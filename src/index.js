@@ -295,7 +295,7 @@ function logs(socket, msg) {
     }
     catch {
         console.log(socket.handshake.query)
-        log(`ERROR | ${msg}`);
+        log(`ERROR NO PEERID | ${msg}`);
     }
 }
 
