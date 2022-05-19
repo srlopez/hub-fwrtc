@@ -35,7 +35,7 @@ function session_new(socket) {
             'description': socket.handshake.query.description,
             'platform': socket.handshake.query.platform,
             'position': socket.handshake.query.position,
-            'oncall': false
+            'oncall': false,
         });
     }
 }
@@ -55,7 +55,7 @@ const multer = require('multer');
 const fs = require('fs');
 const upload = multer({ dest: 'uploads/' });
 const app = express();
-app.use('/'+UPFOLDER, express.static(UPFOLDER));
+app.use('/' + UPFOLDER, express.static(UPFOLDER));
 app.get('/', (req, res) => res.redirect('/status'));
 app.get('/status', get_status);
 app.get('/cancel', get_cancel);
@@ -107,7 +107,7 @@ function get_files(req, res) {
     let files = filenames = fs.readdirSync(UPFOLDER);
 
     files.forEach(function (file) {
-        string += '<li><a href="'+UPFOLDER+'/'+file+'" target="_blank">'+file+'</a></li>'
+        string += '<li><a href="' + UPFOLDER + '/' + file + '" target="_blank">' + file + '</a></li>'
     });
 
     string += '</ul>' + getTime() + '<br/>';
@@ -287,10 +287,16 @@ function logtp(socket, msg, peerid) {
 }
 
 function logs(socket, msg) {
-    let peerid = socket.handshake.query.peerid;
-    //let data = socket.handshake.query.alias + ' ' + msg;
-    let nmsg = `${peerid.substring(0, 8)} | ${msg}`
-    log(nmsg);
+    try {
+        let peerid = socket.handshake.query.peerid;
+        //let data = socket.handshake.query.alias + ' ' + msg;
+        let nmsg = `${peerid.substring(0, 8)} | ${msg}`
+        log(nmsg);
+    }
+    catch {
+        console.log(socket.handshake.query)
+        log(`ERROR | ${msg}`);
+    }
 }
 
 function log(msg) {
