@@ -264,6 +264,17 @@ io.on('connection', socket => {
         session_set(peerid, { oncall: false, remote: null });
     });
 
+    // FAILED: Error en el intercambio de ICECandidates
+    socket.on('failed', (peerid) => {
+        logtp(socket, 'failed', peerid);
+        // El emisor del mensaje de fallo (depende de cómo decidamos hacerlo en el movil)
+        const emisor = socket.handshake.query.peerid; // llamador
+        session_set(emisor, { oncall: false, remote: null });
+        // El destinatario del fallo
+        // io.to(peerid).emit('on-hangup'); NO EMITIMOS NADA (el peer debe detectar su error)
+        session_set(peerid, { oncall: false, remote: null });
+    });
+
     // MIRROR: Cambio del stream de cámara y necesita mirror ?¿?¿?¿
     socket.on('mirror', (peerid) => {
         logs(socket, 'mirror');
