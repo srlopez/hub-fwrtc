@@ -270,8 +270,8 @@ io.on('connection', socket => {
         // El emisor del mensaje de fallo (depende de cómo decidamos hacerlo en el movil)
         const emisor = socket.handshake.query.peerid; // llamador
         session_set(emisor, { oncall: false, remote: null });
-        // El destinatario del fallo
-        // io.to(peerid).emit('on-hangup'); NO EMITIMOS NADA (el peer debe detectar su error)
+        // El destinatario del fallo //OJO Puede que esté ya con el error detectado
+        io.to(peerid).emit('on-failed'); //(el peer debe detectar su error)???
         session_set(peerid, { oncall: false, remote: null });
     });
 
