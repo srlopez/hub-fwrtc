@@ -53,6 +53,9 @@ const http = require('http');
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
+var os = require("os");
+var hostname = os.hostname();
+
 const upload = multer({ dest: 'uploads/' });
 const app = express();
 app.use('/' + UPFOLDER, express.static(UPFOLDER));
@@ -73,7 +76,7 @@ function get_status(req, res) {
     var debug = req.query.debug;
 
     let string = '<html><style>* { font: 18px "Lucida Console", monospace; }</style><body>';
-    string += `${NAME}: ${sessions.size} pares<br/><ul>`;
+    string += `HUB ${hostname}: ${sessions.size} pares<br/><ul>`;
     try {
         sessions.forEach(item => {
             let peerid = item.peerid;
@@ -113,8 +116,8 @@ function get_files(req, res) {
     string += '</ul>' + getTime() + '<br/>';
     string += '<a href="./">Home</a> | ' +
         '<a href="./status?debug=1">Debug</a> | ' +
-        '<a href="./files">Files</a> | ' +
-        '<a href="./download">Download</a>';
+        '<a href="./files">Uploads</a> | ' +
+        '<a href="./download">App Download</a>';
     string += '</html></body>';
     res.end(string);
 }
