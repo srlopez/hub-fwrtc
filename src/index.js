@@ -96,7 +96,7 @@ function get_status(req, res) {
     string += '<a href="./">Home</a> | ' +
         '<a href="./status?debug=1">Debug</a> | ' +
         '<a href="./files">Uploads</a> | ' +
-        '<a href="./download">App Download</a>';
+        '<a href="./download">AppDownload</a>';
     string += '</html></body>';
     res.end(string);
 }
