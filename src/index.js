@@ -95,8 +95,8 @@ function get_status(req, res) {
     string += '</ul>' + getTime() + '<br/>';
     string += '<a href="./">Home</a> | ' +
         '<a href="./status?debug=1">Debug</a> | ' +
-        '<a href="./files">Files</a> | ' +
-        '<a href="./download">Download</a>';
+        '<a href="./files">Uploads</a> | ' +
+        '<a href="./download">App Download</a>';
     string += '</html></body>';
     res.end(string);
 }
