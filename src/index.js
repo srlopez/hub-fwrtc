@@ -8,6 +8,7 @@ const PORT = process.env.PORT;
 const NAME = process.env.NAME;
 const UPFOLDER = process.env.UPFOLDER;
 const APP = process.env.APP;
+const WIN = process.env.WIN;
 
 // PARES -------------------------------------------------------------------
 var sessions = new Map();
@@ -93,10 +94,7 @@ function get_status(req, res) {
         string += 'ERROR<br/>';
     }
     string += '</ul>' + getTime() + '<br/>';
-    string += '<a href="./">Home</a> | ' +
-        '<a href="./status?debug=1">Debug</a> | ' +
-        '<a href="./files">Uploads</a> | ' +
-        '<a href="./download">AppDownload</a>';
+    string += footer();
     string += '</html></body>';
     res.end(string);
 }
@@ -114,10 +112,7 @@ function get_files(req, res) {
     });
 
     string += '</ul>' + getTime() + '<br/>';
-    string += '<a href="./">Home</a> | ' +
-        '<a href="./status?debug=1">Debug</a> | ' +
-        '<a href="./files">Uploads</a> | ' +
-        '<a href="./download">App Download</a>';
+    string += footer();
     string += '</html></body>';
     res.end(string);
 }
@@ -142,10 +137,19 @@ function post_upload(req, res) {
 }
 function get_download(req, res) {
     log('GET /download ' + getIP(req));
-
+    var type = req.query.type;
+    var app= type=='android'?APP:WIN;
     //const file = `${__dirname}/app/app-release.apk`; <-- src
-    const file = "app/" + APP;
+    const file = "app/" + app;
     res.download(file);
+}
+
+function footer(){
+    return '<a href="./">Home</a> | ' +
+    '<a href="./status?debug=1">Debug</a> | ' +
+    '<a href="./files">Uploads</a> | ' +
+    '<a href="./download?type=android">Android</a> | ' +
+    '<a href="./download?type=windows">Windows</a>';
 }
 
 // WS ----------------------------------------------------------------------
