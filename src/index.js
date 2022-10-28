@@ -10,10 +10,10 @@ const UPFOLDER = process.env.UPFOLDER;
 const APP = process.env.APP;
 const WIN = process.env.WIN;
 
-// PARES -------------------------------------------------------------------
+// PARES = SESIONES ---------------------------------------------------------
 var sessions = new Map();
 function session_set(peerid, data) {
-    if (peerid != null && sessions.has(peerid))
+    if (peerid != null && sessions.has(peerid)){
         sessions.set(
             peerid,
             {
@@ -21,6 +21,8 @@ function session_set(peerid, data) {
                 ...data
             },
         );
+        io.to("sessions").emit('on-peers',session_list());
+    }
     else {
         log('ERROR session_set ' + peerid + ' ' + JSON.stringify(data));
     }
@@ -38,15 +40,27 @@ function session_new(socket) {
             'position': socket.handshake.query.position,
             'oncall': false,
         });
+     io.to("sessions").emit('on-peers',session_list());
     }
 }
 
 function session_end(peerid) {
-    if (peerid != null && sessions.has(peerid))
+    if (peerid != null && sessions.has(peerid)){
         sessions.delete(peerid);
+        io.to("sessions").emit('on-peers',session_list());
+    } 
     else {
         log('ERROR session_set ' + peerid);
     }
+}
+
+function session_list(){
+    var list = [];
+    Array.from(sessions, ([key, value]) => {
+        if (key != null) list.push(value);
+        else (session_end(key));
+    });
+    return list;
 }
 
 // HTTP ---------------------------------------------------------------------
@@ -166,8 +180,14 @@ io.on('connection', socket => {
     let peerid = socket.handshake.query.peerid;
     let alias = socket.handshake.query.alias;
     socket.join(peerid); // room == peerid -> para emit
-    session_new(socket);
     logs(socket, 'connection ' + alias);
+
+    // Los clientes Windows tendrán un canal que informa de cada cambio en la lista de pares
+    let platform = socket.handshake.query.platform;
+    if(platform.includes('desktop')) socket.join("sessions"); // room == para emitir modificaciones en la lista
+    
+    // Se crea la sesion
+    session_new(socket);
 
     // ============= Mensajes individuales ============================
     // READY: Prueba. No se usa
@@ -176,22 +196,14 @@ io.on('connection', socket => {
         logs(socket, 'ready');
     });
 
-    // sessions: Pide una lista de sessions. (Al abrir el listín telefónico)
+    // PEERS: Pide una lista de sessions. (Al abrir el listín telefónico)
     socket.on('peers', (data) => {
         let peerid = socket.handshake.query.peerid;
         let alias = socket.handshake.query.alias;
 
         logs(socket, `peers ${alias} ${sessions.size}`);
 
-        var list = [];
-        Array.from(sessions, ([key, value]) => {
-            if (key != null) list.push(value);
-            else (session_end(key));
-        });
-        // for (let i = 1; i < 8; i++) {
-        //     list.push({ peerid: 'FakePeer' + i, alias: 'ejemFake' + i, platform: 'none', oncall: true });
-        // }
-        socket.emit('on-peers', list);
+        socket.emit('on-peers',session_list());
     });
 
     // ALIAS: Cambio de identificación
