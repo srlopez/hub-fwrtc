@@ -2,6 +2,9 @@
 
 Instalar node npm
 sudo apt install nodejs npm
-cd hub-fwrtc
-npm install
-npm run start
+sudo cp ikuzain.service /etc/systemd/system
+sudo systemctl enable ikuzain
+sudo systemctl start ikuzain
+
+
+journalctl -u ikuzain
