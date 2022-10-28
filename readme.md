@@ -1,6 +1,7 @@
 # HUB IKUZAIN 
 
-Instalar node npm
+## Instalación
+
 sudo apt install nodejs npm
 sudo cp ikuzain.service /etc/systemd/system
 sudo systemctl enable ikuzain
