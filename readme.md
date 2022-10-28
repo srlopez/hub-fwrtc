@@ -7,4 +7,4 @@ sudo systemctl enable ikuzain
 sudo systemctl start ikuzain
 
 
-journalctl -u ikuzain
+journalctl -u ikuzain -f
