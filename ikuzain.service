@@ -1,0 +1,14 @@
+[Unit]
+Description=Ikuzain Hub
+
+[Service]
+WorkingDirectory=/home/ikuzain_user/hub-fwrtc
+ExecStart=/home/ikuzain_user/hub-fwrtc/ikuzain.service.sh
+Restart=always
+User=nobody
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
