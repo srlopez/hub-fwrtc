@@ -1,0 +1,15 @@
+https://stackoverflow.com/questions/4018154/how-do-i-run-a-node-js-app-as-a-background-service/29042953#29042953
+
+
+
+ssh ikuzain_user@150.241.255.90
+EasoIkuzain22
+
+# Edición del proceso de git pull cada minuto
+crontab -e
+
+# Log
+journalctl -u ikuzain -f
+
+# Reiniciamos el servicio
+systemctl restart ikuzain 
