@@ -163,7 +163,7 @@ function footer(){
     '<a href="./status?debug=1">Debug</a> | ' +
     //'<a href="./files">Uploads</a> | ' +
     '<a href="./download?type=android">Android</a> | ' +
-    '<a href="./download?type=windows">Windows</a>' +
+    //AQUI '<a href="./download?type=windows">Windows</a>' +
     '';
 }
 
