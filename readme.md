@@ -31,3 +31,5 @@ El proyecto consta de varias partes, quizás la más visible es el aplicativo en
 La [pila de protocolos](https://fr.wikipedia.org/wiki/WebRTC) utilizados  la representa esta imagen:
 
 ![imagen](https://upload.wikimedia.org/wikipedia/commons/9/97/Webrtc_triangle_architecture.svg | width=100)
+
+ <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Webrtc_triangle_architecture.svg" width="50%" height="50%">
