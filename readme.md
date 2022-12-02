@@ -30,4 +30,4 @@ El proyecto consta de varias partes, quizás la más visible es el aplicativo en
 
 La pila de protocolos utilizados la representa esta imagen:
 
-![imagen](https://www.researchgate.net/publication/354662096/figure/fig3/AS:1144580984586247@1649900780259/WebRTC-protocol-stack-for-signalling-and-media.png "WebRTC")
+![imagen](https://www.researchgate.net/publication/354662096/figure/fig3/AS:1144580984586247@1649900780259/WebRTC-protocol-stack-for-signalling-and-media.png)
