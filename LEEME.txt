@@ -30,3 +30,6 @@ sudo systemctl start ikuzain
 journalctl -u ikuzain -f
  
 ```
+
+## Seguimiento
+http://150.241.255.90:3000
