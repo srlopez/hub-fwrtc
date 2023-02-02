@@ -159,11 +159,11 @@ function get_download(req, res) {
 }
 
 function footer(){
-    return '<a href="./">Home</a> | ' +
-    '<a href="./status?debug=1">Debug</a> | ' +
-    //'<a href="./files">Uploads</a> | ' +
-    '<a href="./download?type=android">Android</a> | ' +
-    //'<a href="./download?type=windows">Windows</a>' +
+    return '<a href="./">Home</a>' +
+    ' | <a href="./status?debug=1">Debug</a>' +
+    //' | <a href="./files">Uploads</a>' +
+    ' | <a href="./download?type=android">Android</a>' +
+    //' | <a href="./download?type=windows">Windows</a>' +
     '';
 }
 
