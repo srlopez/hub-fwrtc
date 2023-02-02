@@ -18,7 +18,7 @@ Esto permitirá que la asistencia sanitaria y sociosanitaria que imparten los t�
 El proyecto consta de varias partes, quizás la más visible es el aplicativo en móvil Android, pero también consta de un aplicativo en Windows, de un servicio concentrador de comunicaciones y de un servidor [STUN](https://www.3cx.es/voip-sip/servidor-stun/) para comunicación RT.
 
 ### Aplicativos
-- [Android](https://github.com/srlopez/fwrtc.git)
+- [Android](https://github.com/srlopez/fwrtc_and.git)
 
     Desarrollado en [Flutter](https://flutter.dev/) con [WebRTC](https://webrtc.org/) como librería de gestión de protocolos de tiempo real.
 - [Windows](https://github.com/srlopez/fwrtc_win.git)
