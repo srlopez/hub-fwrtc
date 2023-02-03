@@ -152,7 +152,7 @@ function post_upload(req, res) {
 function get_download(req, res) {
     log('GET /download ' + getIP(req));
     var type = req.query.type;
-    var app= type=='android'?APP:WIN;
+    var app= type=='windows'?WIN:APP;
     //const file = `${__dirname}/app/app-release.apk`; <-- src
     const file = "app/" + app;
     res.download(file);
