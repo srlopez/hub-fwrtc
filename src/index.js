@@ -90,7 +90,8 @@ function get_status(req, res) {
     log('GET /status ' + getIP(req));
     var debug = req.query.debug;
 
-    let string = '<html><style>* { font: 18px "Lucida Console", monospace; }</style><body>';
+    //
+    let string = '<html><head><meta http-equiv="refresh" content="5"></head><style>* { font: 18px "Lucida Console", monospace; }</style><body>';
     string += `HUB ${hostname}: ${sessions.size} pares<br/><ul>`;
     try {
         sessions.forEach(item => {
@@ -109,7 +110,7 @@ function get_status(req, res) {
     }
     string += '</ul>' + getTime() + '<br/>';
     string += footer();
-    string += '</html></body>';
+    string += '</body></html>';
     res.end(string);
 }
 
