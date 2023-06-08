@@ -91,7 +91,7 @@ function get_status(req, res) {
     var debug = req.query.debug;
 
     //
-    let string = '<html><head><meta http-equiv="refresh" content="5"></head><style>* { font: 18px "Lucida Console", monospace; }</style><body>';
+    let string = '<html><head><meta http-equiv="refresh" content="1"></head><style>* { font: 18px "Lucida Console", monospace; }</style><body>';
     string += `HUB ${hostname}: ${sessions.size} pares<br/><ul>`;
     try {
         sessions.forEach(item => {
